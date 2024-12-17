@@ -1,6 +1,7 @@
 {
     "java.compile.nullAnalysis.mode": "automatic",
     "java.project.sourcePaths": [
-        "eventService"
+        "eventService",
+        "apiGatewayService/src/main/java/com/ticketing/apiGatewayService"
     ]
 }
