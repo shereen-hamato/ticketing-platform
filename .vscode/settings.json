@@ -3,5 +3,6 @@
     "java.project.sourcePaths": [
         "eventService",
         "apiGatewayService/src/main/java/com/ticketing/apiGatewayService"
-    ]
+    ],
+    "java.configuration.updateBuildConfiguration": "automatic"
 }

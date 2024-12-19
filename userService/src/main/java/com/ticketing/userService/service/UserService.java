@@ -4,7 +4,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.ticketing.userService.entity.User;
+import com.ticketing.userService.entity.UserAccountDetails;
 import com.ticketing.userService.repository.UserRepository;
 
 @Service
@@ -16,15 +16,15 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public User registerUser(User user){
-        Optional<User> existingUser = userRepository.findByEmail(user.getEmail());
+    public UserAccountDetails registerUser(UserAccountDetails user){
+        Optional<UserAccountDetails> existingUser = userRepository.findByEmail(user.getEmail());
         if(existingUser.isPresent()){
             throw new RuntimeException("Email is already registered.");
         }
         return userRepository.save(user);
     }
 
-    public User getUserById(Long id){
+    public UserAccountDetails getUserById(Long id){
         return userRepository.findById(id).orElseThrow(()-> new RuntimeException("User not found."));
     }
 }

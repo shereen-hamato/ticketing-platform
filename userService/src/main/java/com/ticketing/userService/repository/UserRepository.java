@@ -5,10 +5,10 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.ticketing.userService.entity.User;
+import com.ticketing.userService.entity.UserAccountDetails;
 
 @Repository
-public interface UserRepository  extends JpaRepository<User,Long> {
+public interface UserRepository  extends JpaRepository<UserAccountDetails,Long> {
 
-    public Optional<User> findByEmail(String email);
+    public Optional<UserAccountDetails> findByEmail(String email);
 }
