@@ -37,4 +37,9 @@ public class UserController {
         return ResponseEntity.ok(userService.getUserById(id));
     }
 
+    @GetMapping()
+    public ResponseEntity<String> getHelloPage(){
+        return ResponseEntity.ok("Hello world!");
+    }
+
 }
