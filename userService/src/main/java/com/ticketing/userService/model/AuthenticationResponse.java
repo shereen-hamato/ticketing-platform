@@ -1,4 +1,4 @@
-package com.ticketing.userService.Model;
+package com.ticketing.userService.model;
 
 public class AuthenticationResponse {
     private final String token;

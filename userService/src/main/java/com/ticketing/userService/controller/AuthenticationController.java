@@ -1,7 +1,7 @@
 package com.ticketing.userService.controller;
 
-import Model.AuthenticationRequest;
-import Model.AuthenticationResponse;
+import com.ticketing.userService.model.AuthenticationRequest;
+import com.ticketing.userService.model.AuthenticationResponse;
 import com.ticketing.userService.security.JwtUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package com.ticketing.userService.Model;
+package com.ticketing.userService.model;
 
 public class AuthenticationRequest {
     private String username;
