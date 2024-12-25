@@ -1,6 +1,7 @@
 package com.ticketing.userService.controller;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,9 +38,10 @@ public class UserController {
         return ResponseEntity.ok(userService.getUserById(id));
     }
 
-    @GetMapping()
-    public ResponseEntity<String> getHelloPage(){
-        return ResponseEntity.ok("Hello world!");
+
+    @GetMapping("/profile")
+    public ResponseEntity<?> getUserProfile(@AuthenticationPrincipal String username) {
+        return ResponseEntity.ok("Welcome, " + username);
     }
 
 }
