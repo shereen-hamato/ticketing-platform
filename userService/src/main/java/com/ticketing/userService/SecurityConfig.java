@@ -17,26 +17,8 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.AuthenticationProvider;
-//@Configuration
-//@EnableWebSecurity
-//public class SecurityConfig{
-//
-//    @Bean
-//    public PasswordEncoder passwordEncoder(){
-//        return new BCryptPasswordEncoder();
-//    }
-//
-//    @Bean
-//    public UserDetailsService userDetailsService(){
-//        UserDetails user= User.builder()
-//                               .username("user")
-//                               .password(passwordEncoder().encode("pass"))
-//                               .roles("USER")
-//                               .build();
-//                               return new InMemoryUserDetailsManager(user) ;
-//    }
-//}
+
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
