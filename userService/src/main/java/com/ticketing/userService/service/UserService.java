@@ -16,15 +16,21 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public UserAccountDetails registerUser(UserAccountDetails user){
+    public UserAccountDetails registerUser(UserAccountDetails user) {
         Optional<UserAccountDetails> existingUser = userRepository.findByEmail(user.getEmail());
-        if(existingUser.isPresent()){
+        if (existingUser.isPresent()) {
             throw new RuntimeException("Email is already registered.");
         }
         return userRepository.save(user);
     }
 
-    public UserAccountDetails getUserById(Long id){
-        return userRepository.findById(id).orElseThrow(()-> new RuntimeException("User not found."));
+    public UserAccountDetails getUserById(Long id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found."));
+    }
+
+    public UserAccountDetails findByUsername(String username) {
+        return userRepository.findByEmail(username)
+                .orElseThrow(() -> new RuntimeException("User not found."));
     }
 }

@@ -1,5 +1,6 @@
 package com.ticketing.userService.controller;
 
+import com.ticketing.userService.model.UserDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ticketing.userService.entity.UserAccountDetails;
 import com.ticketing.userService.service.UserService;
 
+import java.util.Collections;
+
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -20,7 +23,7 @@ public class UserController {
     UserService userService;
     PasswordEncoder passwordEncoder;
 
- 
+
     public UserController(UserService userService, PasswordEncoder passwordEncoder) {
         this.userService = userService;
         this.passwordEncoder = passwordEncoder;
@@ -28,14 +31,27 @@ public class UserController {
 
 
     @PostMapping("/register")
-    public ResponseEntity<UserAccountDetails> registerUser(@RequestBody UserAccountDetails user){
+    public ResponseEntity<UserAccountDetails> registerUser(@RequestBody UserAccountDetails user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-            return ResponseEntity.ok(userService.registerUser(user));
+        return ResponseEntity.ok(userService.registerUser(user));
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<UserAccountDetails> getUserById(@PathVariable Long id){
-        return ResponseEntity.ok(userService.getUserById(id));
+
+    @GetMapping("{username}")
+    public ResponseEntity<UserDto> getUserDetails(@PathVariable String username) {
+        // Fetch the user entity
+        UserAccountDetails user = userService.findByUsername(username);
+        if (user == null) {
+            throw new RuntimeException("User not found: " + username);
+        }
+
+        // Convert User entity to UserDto
+        return ResponseEntity.ok(
+                new UserDto(
+                        user.getEmail(),
+                        user.getName(),
+                        Collections.singletonList(user.getRole()))
+        );
     }
 
 
