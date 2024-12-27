@@ -22,7 +22,12 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers("/public/**","/h2-console/**").permitAll()
                         .requestMatchers("/events/**").authenticated()
+                )
+                .headers(headers ->
+                        headers
+                                .contentSecurityPolicy(csp -> csp.policyDirectives("frame-ancestors 'self'"))  // CSP header to allow embedding only from self
                 )
                 .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();

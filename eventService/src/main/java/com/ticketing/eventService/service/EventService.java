@@ -23,14 +23,15 @@ public class EventService {
     public Event createEvent(Event event, Authentication auth) {
         String username = auth.getName();
 
-        UserDto user = userServiceClient.getUserDetails(username);
-
-        if (!user.getRoles().contains("ROLE_EVENT_CREATOR")) {
-            throw new RuntimeException("Access denied: User lacks required role");
-        }
+//        UserDto user = userServiceClient.getUserDetails(username);
+//
+//        if (!user.getRoles().contains("ADMIN")) {
+//            throw new RuntimeException("Access denied: User lacks required role");
+//        }
 
         event.setCreatedByUsername(username);
-        event.setCreatedByFullName(user.getFullName());
+        event.setCreatedByFullName(username);
+        //event.setCreatedByFullName(user.getFullName());
 
         return eventRepository.save(event);
     }
