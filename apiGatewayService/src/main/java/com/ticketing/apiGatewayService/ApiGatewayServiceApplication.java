@@ -9,14 +9,20 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class ApiGatewayServiceApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(ApiGatewayServiceApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(ApiGatewayServiceApplication.class, args);
+    }
 
-	@Bean
-	public RouteLocator routerBuilder(RouteLocatorBuilder routeLocatorBuilder){
-		return routeLocatorBuilder.routes()
-				.route("user-service",r->r.path("/users/**")
-						.uri("http://localhost:8081/")).build();
-	}
+    @Bean
+    public RouteLocator routerBuilder(RouteLocatorBuilder routeLocatorBuilder) {
+        return routeLocatorBuilder.routes()
+                .route("user-service", r -> r.path("/users/**")
+                        .uri("http://localhost:8081/")
+
+                )
+                .route("event-service", r -> r.path("/events/**")
+                        .uri("http://localhost:8082/")
+
+                ).build();
+    }
 }
