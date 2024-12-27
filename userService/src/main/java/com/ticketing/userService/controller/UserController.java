@@ -21,19 +21,9 @@ import java.util.Collections;
 public class UserController {
 
     UserService userService;
-    PasswordEncoder passwordEncoder;
-
 
     public UserController(UserService userService, PasswordEncoder passwordEncoder) {
         this.userService = userService;
-        this.passwordEncoder = passwordEncoder;
-    }
-
-
-    @PostMapping("/register")
-    public ResponseEntity<UserAccountDetails> registerUser(@RequestBody UserAccountDetails user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return ResponseEntity.ok(userService.registerUser(user));
     }
 
 
